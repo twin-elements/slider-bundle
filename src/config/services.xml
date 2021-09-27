@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+
+        <prototype namespace="TwinElements\SliderBundle\" resource="../../src/*"
+                   exclude="../../src/{DependencyInjection,Entity,Tests}"/>
+
+        <service id="TwinElements\SliderBundle\Form\SliderType" autowire="true">
+            <argument>%twin_elements_slider%</argument>
+        </service>
+
+        <service id="TwinElements\SliderBundle\AdminMenu">
+            <tag name="twin_elements.admin_menu"/>
+        </service>
+
+    </services>
+</container>

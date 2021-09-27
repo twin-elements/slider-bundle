@@ -1,0 +1,21 @@
+{% extends '@TwinElementsAdmin/core/details_with_sidebar.html.twig' %}
+
+{% set back_button_link = path('slider_index') %}
+
+{% block title %}{{ entity.title }}{% endblock %}
+{% block buttons %}
+    {{ block('back_button') }}
+{% endblock %}
+
+{% block right_sidebar %}
+    {{ block('changes_details') }}
+    {{ block('delete_form') }}
+
+    {% set file_path = entity.image %}
+    {% set section_title = "cms.image"|translate_admin %}
+    {{ block('single_image_preview_template') }}
+
+    {% set file_path = entity.imageMobile %}
+    {% set section_title = "slider.image_for_mobile"|translate_admin %}
+    {{ block('single_image_preview_template') }}
+{% endblock %}

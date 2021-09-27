@@ -1,0 +1,8 @@
+{% extends '@TwinElementsAdmin/core/details.html.twig' %}
+
+{% set back_button_link = path('slider_index') %}
+
+{% block title %}{{ "slider.create_new_slide"|translate_admin }}{% endblock %}
+{% block buttons %}
+    {{ block('back_button') }}
+{% endblock %}

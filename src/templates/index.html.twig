@@ -1,0 +1,55 @@
+{% extends '@TwinElementsAdmin/core/list.html.twig' %}
+
+{% block title %}{{ "slider.slider"|translate_admin }}{% endblock %}
+{% block buttons %}
+    {% set link = path('slider_new') %}
+    {{ block('add_action_link') }}
+{% endblock %}
+
+{% block list %}
+    {{ block('list_ul_begin') }}
+    {{ block('list_li_header_begin') }}
+    {{ block('id_header') }}
+    <div class="col">{{ "cms.title"|translate_admin }}</div>
+    {{ block('list_changes_header') }}
+    {{ block('circle_header') }}
+    {{ block('move_header') }}
+    {{ block('list_li_header_end') }}
+    {% for slider in sliders %}
+        {% set id = slider.id %}
+        {% set createdAt = slider.createdAt %}
+        {% set createdBy = slider.createdBy %}
+        {% set updatedAt = slider.updatedAt %}
+        {% set updatedBy = slider.updatedBy %}
+        {% set circle_active = slider.isActive %}
+
+        {{ block('list_li_begin') }}
+        {{ block('id') }}
+        <div class="col">
+            <div class="title">
+                <span>{{ slider.title }}</span>
+                {% if slider.title is null %}
+                    <span class="badge badge-warning">{{ "cms.no_translations"|translate_admin }}</span>
+                {% endif %}
+                <br>
+                {% if is_granted(constant('TwinElements\\SliderBundle\\Security\\SliderRoles::ROLE_SLIDER_EDIT'), slider) %}
+                    <div class="hidden-bar">
+                        <a href="{{ path('slider_edit', { 'id': slider.id }) }}">{{ "cms.edit"|translate_admin }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {{ block('changes_box_in_list') }}
+        {{ block('circle') }}
+        {{ block('move') }}
+        {{ block('list_li_end') }}
+    {% else %}
+        {{ block('no_elements') }}
+    {% endfor %}
+    {{ block('list_ul_end') }}
+{% endblock %}
+
+{% block additional_javascripts %}
+    {{ parent() }}
+    {{ renderSortable("App\\\\Entity\\\\Slider\\\\Slider") }}
+{% endblock %}

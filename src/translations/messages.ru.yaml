@@ -1,0 +1,12 @@
+slider:
+  slider: Слайдер
+  slider_list: Слайдер
+  title: Название слайдера
+  recomended_picture_size: 'Рекомендуемый размер изображения: %width%px X %height%px'
+  left: Лево
+  right: Право
+  create_new_slide: Создание нового слайда
+  slider.button_name.optional: 'Опционально. Если поле останется пустым, будет использоваться фраза по умолчанию'
+  image_for_mobile: Картинка для телефона
+  position: Положение описания
+  button_name:  Название кнопки

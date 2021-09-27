@@ -1,0 +1,13 @@
+slider:
+  slider: Slider
+  slider_list: Slider
+  title: Slider name
+  recomended_picture_size: 'Recommended picture size: %width%px X %height%px'
+  left: Left
+  right: Right
+  center: Center
+  create_new_slide: Adding new slider version
+  slider.button_name.optional: 'Optional. If left empty - the default name will be added'
+  image_for_mobile: Image for mobiles
+  position: Content position
+  button_name:  Button name
