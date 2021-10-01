@@ -2,6 +2,7 @@
 
 namespace TwinElements\SliderBundle\Controller;
 
+use TwinElements\AdminBundle\Entity\Traits\PositionInterface;
 use TwinElements\SliderBundle\Form\SliderType;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
 use TwinElements\SliderBundle\Entity\Slider;
@@ -33,12 +34,18 @@ class SliderController extends AbstractController
             $sliders = $em->getRepository(Slider::class)->findIndexListItems($request->getLocale());
 
             $this->breadcrumbs->setItems([
-               $this->adminTranslator->translate('slider.slider_list') => null
+                $this->adminTranslator->translate('slider.slider_list') => null
             ]);
 
-            return $this->render('@TwinElementsSlider/index.html.twig', array(
-                'sliders' => $sliders,
-            ));
+            $responseParameters = [
+                'sliders' => $sliders
+            ];
+
+            if ((new \ReflectionClass(Slider::class))->implementsInterface(PositionInterface::class)) {
+                $responseParameters['sortable'] = Slider::class;
+            }
+
+            return $this->render('@TwinElementsSlider/index.html.twig', $responseParameters);
         } catch (\Exception $exception) {
             $this->flashes->errorMessage($exception);
             return $this->redirectToRoute('admin_dashboard');

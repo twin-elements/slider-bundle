@@ -49,7 +49,6 @@
     {{ block('list_ul_end') }}
 {% endblock %}
 
-{% block additional_javascripts %}
-    {{ parent() }}
-    {{ renderSortable("App\\\\Entity\\\\Slider\\\\Slider") }}
+{% block head_js %}
+    {{ block('sortable') }}
 {% endblock %}

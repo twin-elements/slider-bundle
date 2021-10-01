@@ -3,6 +3,7 @@
 namespace TwinElements\SliderBundle\Entity;
 
 use TwinElements\AdminBundle\Entity\Traits\IdTrait;
+use TwinElements\AdminBundle\Entity\Traits\PositionInterface;
 use TwinElements\AdminBundle\Entity\Traits\PositionTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\BlameableInterface;
@@ -18,7 +19,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
  * @ORM\Entity(repositoryClass="TwinElements\SliderBundle\Repository\SliderRepository")
  * @ORM\Table(name="slider")
  */
-class Slider implements TranslatableInterface, BlameableInterface, TimestampableInterface, LoggableInterface
+class Slider implements TranslatableInterface, BlameableInterface, TimestampableInterface, LoggableInterface, PositionInterface
 {
     use IdTrait,
         TranslatableTrait,
