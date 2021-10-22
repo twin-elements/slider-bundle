@@ -50,8 +50,8 @@ class SliderType extends AbstractType
                 'label' => $this->translator->translate('slider.title')
             ])
             ->add('redirect', TEChooseLinkType::class, [
-                'label' => $this->translator->translate('cms.redirect'),
-                'help' => $this->translator->translate('cms.optional')
+                'label' => $this->translator->translate('admin.redirect'),
+                'help' => $this->translator->translate('admin.optional')
             ])
             ->add('buttonName', TextType::class, [
                 'label' => $this->translator->translate('slider.button_name'),
@@ -60,7 +60,7 @@ class SliderType extends AbstractType
             ])
             ->add('image', TEUploadType::class, [
                 'file_type' => 'image',
-                'label' => $this->translator->translate('cms.image'),
+                'label' => $this->translator->translate('admin.image'),
                 'help' => $this->translator->translate('slider.recomended_picture_size', [
                     '%width%' => $this->defaultImageSize['width'],
                     '%height%' => $this->defaultImageSize['height']
