@@ -12,7 +12,7 @@
     {{ block('delete_form') }}
 
     {% set file_path = entity.image %}
-    {% set section_title = "cms.image"|translate_admin %}
+    {% set section_title = "admin.image"|translate_admin %}
     {{ block('single_image_preview_template') }}
 
     {% set file_path = entity.imageMobile %}
