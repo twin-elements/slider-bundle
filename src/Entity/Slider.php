@@ -2,6 +2,7 @@
 
 namespace TwinElements\SliderBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use TwinElements\AdminBundle\Entity\Traits\IdTrait;
 use TwinElements\AdminBundle\Entity\Traits\PositionInterface;
 use TwinElements\AdminBundle\Entity\Traits\PositionTrait;
@@ -28,16 +29,22 @@ class Slider implements TranslatableInterface, BlameableInterface, Timestampable
         PositionTrait,
         LoggableTrait;
 
-    const Left = 1;
-    const Center = 2;
-    const Right = 3;
+    const BackgroundImage = 1;
+    const ImageLeft = 2;
+    const ImageRight = 3;
+
+    /**
+     * @var integer|null
+     * @ORM\Column(type="smallint")
+     */
+    private $type = self::BackgroundImage;
 
     /**
      * @var int|null
      * @ORM\Column(name="orientation", type="smallint")
+     * @Assert\NotBlank()
      */
-    private $orientation = self::Left;
-
+    private $orientation = ContentLocation::LeftCenter;
 
     /**
      * @return int|null
@@ -67,11 +74,13 @@ class Slider implements TranslatableInterface, BlameableInterface, Timestampable
         return $this;
     }
 
-    public function isEnable(){
+    public function isEnable()
+    {
         return $this->translate(null, false)->isEnable();
     }
 
-    public function setEnable(bool $enable){
+    public function setEnable(bool $enable)
+    {
         $this->translate(null, false)->setEnable($enable);
 
         return $this;
@@ -147,5 +156,21 @@ class Slider implements TranslatableInterface, BlameableInterface, Timestampable
         $this->translate($this->currentLocale, false)->setContent($content);
 
         return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param int|null $type
+     */
+    public function setType(?int $type): void
+    {
+        $this->type = $type;
     }
 }

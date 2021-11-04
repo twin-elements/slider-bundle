@@ -6,3 +6,7 @@
 {% block buttons %}
     {{ block('back_button') }}
 {% endblock %}
+
+{% block additional_javascripts %}
+    {% include '@TwinElementsSlider/updateFormAjax.html.twig' %}
+{% endblock %}

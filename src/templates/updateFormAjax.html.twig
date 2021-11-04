@@ -1,0 +1,17 @@
+<script>
+    var $type = $('#slider_type');
+    $type.change(function () {
+        var $form = $(this).closest('form');
+
+        $.ajax({
+            url: $form.attr('action'),
+            type: $form.attr('method'),
+            data: $form.serializeArray(),
+            success: function (html) {
+                $('#slider_orientation').replaceWith(
+                    $(html).find('#slider_orientation')
+                );
+            }
+        })
+    });
+</script>

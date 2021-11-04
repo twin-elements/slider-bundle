@@ -65,6 +65,12 @@ class SliderController extends AbstractController
         $form = $this->createForm(SliderType::class, $slider);
         $form->handleRequest($request);
 
+        if($request->isXmlHttpRequest()){
+            return $this->render('@TwinElementsSlider/form.html.twig', [
+                'form' => $form->createView()
+            ]);
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $em = $this->getDoctrine()->getManager();
@@ -106,11 +112,18 @@ class SliderController extends AbstractController
      */
     public function editAction(Request $request, Slider $slider)
     {
+
         $this->denyAccessUnlessGranted(SliderVoter::EDIT, $slider);
 
         $deleteForm = $this->createDeleteForm($slider);
         $editForm = $this->createForm(SliderType::class, $slider);
         $editForm->handleRequest($request);
+
+        if($request->isXmlHttpRequest()){
+            return $this->render('@TwinElementsSlider/form.html.twig', [
+                'form' => $editForm->createView()
+            ]);
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             try {

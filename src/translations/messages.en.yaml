@@ -11,3 +11,21 @@ slider:
   image_for_mobile: Image for mobiles
   position: Content position
   button_name:  Button name
+  slider_type: Slider type
+  content_location:
+    1: Left Top
+    2: Center Top
+    3: Right Top
+    4: Left Center
+    5: Center Center
+    6: Right Center
+    7: Left Bottom
+    8: Center Bottom
+    9: Right Bottom
+    10: Top
+    11: Center
+    12: Bottom
+  type:
+    1: Background image
+    2: Picture on the left
+    3: Picture on the right

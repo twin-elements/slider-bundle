@@ -19,3 +19,7 @@
     {% set section_title = "slider.image_for_mobile"|translate_admin %}
     {{ block('single_image_preview_template') }}
 {% endblock %}
+
+{% block additional_javascripts %}
+    {% include '@TwinElementsSlider/updateFormAjax.html.twig' %}
+{% endblock %}

@@ -23,4 +23,6 @@ slider_admin:
 twin_elements_slider:
    image_size: { width: 1920, height: 600 }
    mobile_image_size: { width: 600, height: 600 }
+   available_types: [ 'BackgroundImage', 'ImageLeft', 'ImageRight' ]
+   default_type: 'ImageLeft'
 ```

@@ -3,11 +3,26 @@ slider:
   slider_list: Slider
   title: Nazwa slidera
   recomended_picture_size: 'Zalecany rozmiar obrazka: %width%px X %height%px'
-  left: Lewo
-  right: Prawo
-  center: Center
   create_new_slide: Tworzenie nowej odsłony slidera
   slider.button_name.optional: 'Opcjonalnie. Jeśli puste - dodana będzie nazwa domyślna'
   image_for_mobile: Obrazek na telefony
   position: Pozycja treści
   button_name:  Nazwa przycisku
+  slider_type: Rodzaj slajdu
+  content_location:
+    1: Lewo Góra
+    2: Środek Góra
+    3: Prawo Góra
+    4: Lewo Środek
+    5: Środek Środek
+    6: Prawo Środek
+    7: Lewo Dół
+    8: Środek Dół
+    9: Prawo Dół
+    10: Góra
+    11: Środek
+    12: Dół
+  type:
+    1: Obrazek w tle
+    2: Obrazek po lewej
+    3: Obrazek po prawej

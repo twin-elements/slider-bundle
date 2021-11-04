@@ -26,6 +26,11 @@ class Configuration implements ConfigurationInterface
                         ->integerNode('height')->end()
                     ->end()
                 ->end()
+                ->arrayNode('available_types')
+                    ->scalarPrototype()->end()
+                ->end()
+                ->scalarNode('default_type')
+                    ->defaultValue('BackgroundImage')
             ->end();
 
         return $treeBuilder;
