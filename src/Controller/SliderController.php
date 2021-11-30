@@ -83,7 +83,7 @@ class SliderController extends AbstractController
 
                 $this->crudLogger->createLog($slider->getId(), $slider->getTitle());
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());
                 return $this->redirectToRoute('slider_index');
@@ -135,7 +135,7 @@ class SliderController extends AbstractController
 
                 $this->crudLogger->createLog($slider->getId(), $slider->getTitle());
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());
             }
@@ -183,7 +183,7 @@ class SliderController extends AbstractController
 
                 $this->crudLogger->createLog($id, $title);
 
-                $this->flashes->successMessage();
+                $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
 
             } catch (\Exception $exception) {
                 $this->flashes->errorMessage($exception->getMessage());
