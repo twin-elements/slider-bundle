@@ -2,7 +2,15 @@
 
 {% set back_button_link = path('slider_index') %}
 
-{% block title %}{{ entity.title }}{% endblock %}
+{% block title %}
+    {% if entity.title %}
+        {{ entity.title }}
+    {% else %}
+        {{ entity.translate.title }}
+        {{ block('title_no_translation_badge') }}
+    {% endif %}
+
+{% endblock %}
 {% block buttons %}
     {{ block('back_button') }}
 {% endblock %}
