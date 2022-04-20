@@ -27,7 +27,7 @@
             {{ block('id') }}
             <div class="col">
                 <div class="title">
-                    {% if is_granted(constant('TwinElements\\SliderBundle\\Security\\SliderRoles::ROLE_SLIDER_EDIT'), slider) %}
+                    {% if is_granted(constant('TwinElements\\SliderBundle\\Security\\SliderVoter::EDIT'), slider) %}
                         {% set editUrl = path('slider_edit', { 'id': slider.id }) %}
                     {% endif %}
                     <a {% if editUrl is defined %}href="{{ editUrl }}"{% endif %}>
