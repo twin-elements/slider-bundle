@@ -4,8 +4,8 @@ namespace TwinElements\SliderBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use TwinElements\AdminBundle\Entity\Traits\IdTrait;
-use TwinElements\AdminBundle\Entity\Traits\PositionInterface;
-use TwinElements\AdminBundle\Entity\Traits\PositionTrait;
+use TwinElements\SortableBundle\Entity\PositionInterface;
+use TwinElements\SortableBundle\Model\PositionTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\BlameableInterface;
 use Knp\DoctrineBehaviors\Contract\Entity\LoggableInterface;

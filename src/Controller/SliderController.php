@@ -2,7 +2,9 @@
 
 namespace TwinElements\SliderBundle\Controller;
 
-use TwinElements\AdminBundle\Entity\Traits\PositionInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use TwinElements\Component\ResponseParameterBuilder\ResponseParameterBuilder;
+use TwinElements\SortableBundle\Entity\PositionInterface;
 use TwinElements\SliderBundle\Form\SliderType;
 use TwinElements\AdminBundle\Model\CrudControllerTrait;
 use TwinElements\SliderBundle\Entity\Slider;
@@ -10,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use TwinElements\SliderBundle\Security\SliderVoter;
+use TwinElements\SortableBundle\SortableResponseParametersPreparer;
 
 /**
  * @Route("slider")
@@ -22,30 +25,24 @@ class SliderController extends AbstractController
     /**
      * @Route("/", name="slider_index", methods={"GET"})
      */
-    public function indexAction(Request $request)
+    public function indexAction(
+        Request         $request,
+        ManagerRegistry $managerRegistry
+    )
     {
         try {
             $this->denyAccessUnlessGranted(SliderVoter::VIEW, new Slider());
-            $em = $this->getDoctrine()->getManager();
-
-            /**
-             * @var Slider $slider
-             */
-            $sliders = $em->getRepository(Slider::class)->findIndexListItems($request->getLocale());
+            $em = $managerRegistry->getManager();
 
             $this->breadcrumbs->setItems([
                 $this->adminTranslator->translate('slider.slider_list') => null
             ]);
 
-            $responseParameters = [
-                'sliders' => $sliders
-            ];
+            $responseParameters = new ResponseParameterBuilder();
+            $responseParameters->addParameter('slides', $em->getRepository(Slider::class)->findIndexListItems($request->getLocale()));
+            SortableResponseParametersPreparer::prepare($responseParameters, Slider::class);
 
-            if ((new \ReflectionClass(Slider::class))->implementsInterface(PositionInterface::class)) {
-                $responseParameters['sortable'] = Slider::class;
-            }
-
-            return $this->render('@TwinElementsSlider/index.html.twig', $responseParameters);
+            return $this->render('@TwinElementsSlider/index.html.twig', $responseParameters->getParameters());
         } catch (\Exception $exception) {
             $this->flashes->errorMessage($exception);
             return $this->redirectToRoute('admin_dashboard');
@@ -65,7 +62,7 @@ class SliderController extends AbstractController
         $form = $this->createForm(SliderType::class, $slider);
         $form->handleRequest($request);
 
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
             return $this->render('@TwinElementsSlider/form.html.twig', [
                 'form' => $form->createView()
             ]);
@@ -119,7 +116,7 @@ class SliderController extends AbstractController
         $editForm = $this->createForm(SliderType::class, $slider);
         $editForm->handleRequest($request);
 
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
             return $this->render('@TwinElementsSlider/form.html.twig', [
                 'form' => $editForm->createView()
             ]);

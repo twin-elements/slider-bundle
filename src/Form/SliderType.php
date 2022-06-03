@@ -6,7 +6,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
-use TwinElements\AdminBundle\Service\AdminTranslator;
+use TwinElements\Component\AdminTranslator\AdminTranslator;
 use TwinElements\SliderBundle\Entity\ContentLocation;
 use TwinElements\SliderBundle\Entity\Slider;
 use Symfony\Component\Form\AbstractType;

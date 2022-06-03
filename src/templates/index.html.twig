@@ -1,4 +1,5 @@
 {% extends '@TwinElementsAdmin/core/list.html.twig' %}
+{% use '@TwinElementsSortable/blocks.html.twig' %}
 
 {% block title %}{{ "slider.slider"|translate_admin }}{% endblock %}
 {% block buttons %}
@@ -15,7 +16,7 @@
             {{ block('circle_header') }}
             {{ block('move_header') }}
         {{ block('list_li_header_end') }}
-    {% for slider in sliders %}
+    {% for slider in slides %}
         {% set id = slider.id %}
         {% set createdAt = slider.createdAt %}
         {% set createdBy = slider.createdBy %}
