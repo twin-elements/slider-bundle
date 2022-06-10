@@ -3,6 +3,7 @@
 namespace TwinElements\SliderBundle\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
+use TwinElements\Component\CrudLogger\CrudLogger;
 use TwinElements\Component\ResponseParameterBuilder\ResponseParameterBuilder;
 use TwinElements\SortableBundle\Entity\PositionInterface;
 use TwinElements\SliderBundle\Form\SliderType;
@@ -78,7 +79,7 @@ class SliderController extends AbstractController
 
                 $em->flush();
 
-                $this->crudLogger->createLog($slider->getId(), $slider->getTitle());
+                $this->crudLogger->createLog(Slider::class, CrudLogger::CreateAction, $slider->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
@@ -130,7 +131,7 @@ class SliderController extends AbstractController
 
                 $em->flush();
 
-                $this->crudLogger->createLog($slider->getId(), $slider->getTitle());
+                $this->crudLogger->createLog(Slider::class, CrudLogger::EditAction, $slider->getId());
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
             } catch (\Exception $exception) {
@@ -157,8 +158,6 @@ class SliderController extends AbstractController
     }
 
     /**
-     * Deletes a slider entity.
-     *
      * @Route("/{id}", name="slider_delete", methods={"DELETE"})
      */
     public function deleteAction(Request $request, Slider $slider)
@@ -178,7 +177,7 @@ class SliderController extends AbstractController
                 $em->remove($slider);
                 $em->flush();
 
-                $this->crudLogger->createLog($id, $title);
+                $this->crudLogger->createLog(Slider::class, CrudLogger::DeleteAction, $id);
 
                 $this->flashes->successMessage($this->adminTranslator->translate('admin.success_operation'));;
 
@@ -193,10 +192,7 @@ class SliderController extends AbstractController
 
 
     /**
-     * Creates a form to delete a slider entity.
-     *
      * @param Slider $slider The slider entity
-     *
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Slider $slider)
